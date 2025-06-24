@@ -1,0 +1,23 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "frontend", "frontend", "{98E6D26B-DA95-4396-BE03-401F13483F4F}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "backend", "backend", "{79D75962-D352-467C-B698-12A13950B195}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cistema", "Cistema\Cistema.csproj", "{25E3A342-D0FB-49D6-9FD8-A7C07AFDD6D5}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{25E3A342-D0FB-49D6-9FD8-A7C07AFDD6D5} = {79D75962-D352-467C-B698-12A13950B195}
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{25E3A342-D0FB-49D6-9FD8-A7C07AFDD6D5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{25E3A342-D0FB-49D6-9FD8-A7C07AFDD6D5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{25E3A342-D0FB-49D6-9FD8-A7C07AFDD6D5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{25E3A342-D0FB-49D6-9FD8-A7C07AFDD6D5}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
