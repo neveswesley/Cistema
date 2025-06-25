@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using Cistema.Enums;
 
 namespace Cistema.Models.DTO;
 
@@ -14,11 +15,11 @@ public class EmployeeCreateDTO
 
     public DateTime DateOfBirth { get; set; }
 
-    public string Sex { get; set; }
+    public Gender Gender { get; set; }
 
-    public string MaritalStatus { get; set; }
+    public MaritalStatus MaritalStatus { get; set; }
 
-    public string Nationality { get; set; }
+    public Nationality Nationality { get; set; }
 
     public string BirthPlace { get; set; }
 
@@ -28,7 +29,7 @@ public class EmployeeCreateDTO
     public int? ContactId { get; set; }
     public DateTime Admission { get; set; }
 
-    public string Contract { get; set; }
+    public Contract Contract { get; set; }
 
     public decimal Salary { get; set; }
 

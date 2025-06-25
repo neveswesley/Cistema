@@ -53,7 +53,7 @@ namespace Cistema.Controllers
                 CPF = employeeDto.CPF,
                 RG = employeeDto.RG,
                 DateOfBirth = employeeDto.DateOfBirth,
-                Sex = employeeDto.Sex,
+                Gender = employeeDto.Gender,
                 MaritalStatus = employeeDto.MaritalStatus,
                 Nationality = employeeDto.Nationality,
                 BirthPlace = employeeDto.BirthPlace,
@@ -80,7 +80,7 @@ namespace Cistema.Controllers
 
             employee.FullName = employeeDto.FullName;
             employee.RG = employeeDto.RG;
-            employee.Sex = employeeDto.Sex;
+            employee.Gender = employeeDto.Gender;
             employee.MaritalStatus = employeeDto.MaritalStatus;
             employee.Nationality = employeeDto.Nationality;
             employee.BirthPlace = employeeDto.BirthPlace;
