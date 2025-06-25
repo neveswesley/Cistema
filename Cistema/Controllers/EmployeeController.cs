@@ -74,7 +74,7 @@ namespace Cistema.Controllers
         [HttpPut("{id}")]
         public async Task<ActionResult> Update(int id, [FromBody] EmployeeUpdateDTO employeeDto)
         {
-            var employee = await _employeeRepository.GetById(id);
+            var employee = await _employeeRepository.GetEntityById(id);
             if (employee == null)
                 return NotFound();
 
@@ -84,24 +84,23 @@ namespace Cistema.Controllers
             employee.MaritalStatus = employeeDto.MaritalStatus;
             employee.Nationality = employeeDto.Nationality;
             employee.BirthPlace = employeeDto.BirthPlace;
-            employee.Contract = employeeDto.Contract;
             employee.CTPS = employeeDto.CTPS;
             employee.PIS = employeeDto.PIS;
-            employee.LastUpdate = DateTime.Now;
+
+            if (employeeDto.Contract != null)
+            {
+                employee.Admission = employeeDto.Admission.Value;
+                employee.Salary = employeeDto.Salary.Value;
+                employee.CTPS = employeeDto.CTPS;
+                employee.PIS = employeeDto.PIS;
+                employee.Active = employeeDto.Active.Value;
+            }
+
+            employee.LastUpdate = DateTime.UtcNow;
 
             await _employeeRepository.Update(employee);
-            return Ok(employeeDto);
-        }
 
-        [HttpDelete("{id}")]
-        public async Task<ActionResult> Delete(int id)
-        {
-            var employee = await _employeeRepository.GetById(id);
-            if (employee == null)
-                return NotFound();
-
-            await _employeeRepository.Delete(id);
-            return NoContent();
+            return Ok(employee);
         }
     }
 }

@@ -11,13 +11,21 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers()
     .AddJsonOptions(options =>
         options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter()));
+
+builder.Services.AddControllers()
+    .AddJsonOptions(options =>
+    {
+        options.JsonSerializerOptions.ReferenceHandler = System.Text.Json.Serialization.ReferenceHandler.IgnoreCycles;
+        options.JsonSerializerOptions.WriteIndented = true;
+    });
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 builder.Services.AddOpenApi();
 builder.Services.AddDbContext<CistemaDbContext>(options =>
 {
-    options.UseSqlServer("Server=WESLEY\\SQLEXPRESS;Database=Cistema.DB;User ID=sa;Password=1q2w3e4r5t@#;TrustServerCertificate=True;");
+    options.UseSqlServer("Server=WESLEY\\SQLEXPRESS;Database=Cistema;User ID=sa;Password=1q2w3e4r5t@#;TrustServerCertificate=True;");
 });
 builder.Services.AddScoped<IEmployeeRepository, EmployeeRepository>();
+builder.Services.AddScoped<IAddressRepository, AddressRepository>();
 
 var app = builder.Build();
 

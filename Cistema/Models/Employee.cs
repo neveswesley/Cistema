@@ -16,12 +16,10 @@ public class Employee
     public Nationality Nationality { get; set; }
     public string BirthPlace { get; set; }
 
-    public int? AddressId { get; set; }
     public Address Address { get; set; }
     
     public int? TitleId { get; set; }
     public Title Title { get; set; }
-    public int? ContactId { get; set; }
     public Contact Contact { get; set; }
 
     public DateTime Admission { get; set; }
@@ -32,7 +30,7 @@ public class Employee
     public string PIS { get; set; }
     public bool Active { get; set; }
 
-    public DateTime Register { get; set; }
+    public DateTime Register { get; set; } = DateTime.UtcNow;
     public string Creator { get; set; }
     public DateTime? LastUpdate { get; set; }
    

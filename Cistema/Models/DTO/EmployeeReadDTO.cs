@@ -13,10 +13,6 @@ public class EmployeeReadDTO
     public MaritalStatus MaritalStatus { get; set; }
     public Nationality Nationality { get; set; }
     public string BirthPlace { get; set; }
-    
-    public string AddressDescription { get; set; }
-    public string TitleName { get; set; }
-
     public DateTime Admission { get; set; }
     public Contract Contract { get; set; }
     public decimal Salary { get; set; }

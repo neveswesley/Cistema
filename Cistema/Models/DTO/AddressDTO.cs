@@ -1,12 +1,9 @@
-﻿using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-using Microsoft.EntityFrameworkCore;
+﻿using System.ComponentModel.DataAnnotations.Schema;
 
-namespace Cistema.Models;
+namespace Cistema.Models.DTO;
 
-public class Address
+public class AddressDTO
 {
-    [Key] public int Id { get; set; }
     public string CEP { get; set; }
     public string Street { get; set; }
     public string Number { get; set; }
@@ -14,7 +11,6 @@ public class Address
     public string Neighborhood { get; set; }
     public string City { get; set; }
     public string State { get; set; }
-
+    [ForeignKey("Employee")]
     public int EmployeeId { get; set; }
-    public Employee Employee { get; set; }
 }

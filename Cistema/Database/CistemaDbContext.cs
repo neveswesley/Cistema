@@ -12,6 +12,9 @@ public class CistemaDbContext : DbContext
 
     public DbSet<Employee> Employees { get; set; }
     public DbSet<Title> Titles { get; set; }
+    public DbSet<Address> Addresses { get; set; }
+    public DbSet<Contact> Contacts { get; set; }
+
     
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -22,13 +25,12 @@ public class CistemaDbContext : DbContext
 
         modelBuilder.Entity<Employee>()
             .HasOne(a => a.Address)
-            .WithOne(e => e.Employees)
+            .WithOne(e => e.Employee)
             .HasForeignKey<Address>(ae => ae.EmployeeId);
 
         modelBuilder.Entity<Employee>()
             .HasOne(e => e.Contact)
             .WithOne(c => c.Employee)
             .HasForeignKey<Contact>(ec => ec.EmployeeId);
-
     }
 }
