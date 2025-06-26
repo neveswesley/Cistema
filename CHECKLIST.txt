@@ -1,0 +1,11 @@
+CRUD - ENDEREÇO
+
+CRUD - CONTATOS
+
+- em ambos, dá pra criar um endereço / contato e dps ir na model funcionário, pegar o id criada e colocar no AddressId / ContactIdd do funcionário
+
+CRUD - TITLE - usar model para cadastrar, editar, excluir
+
+autenticação - login/senha
+
+paginação

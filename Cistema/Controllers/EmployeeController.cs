@@ -17,15 +17,27 @@ namespace Cistema.Controllers
             _employeeRepository = employeeRepository;
         }
 
-        [HttpGet("")]
-        public async Task<ActionResult> GetAll()
+        [HttpGet]
+        public async Task<ActionResult> GetAllPaged(int page, int pageSize)
         {
-            var obj = await _employeeRepository.GetAll();
-            if (obj == null)
-                return NotFound();
+            if (page <= 0 || pageSize <= 0)
+                return BadRequest("Página e tamanho devem ser maiores que zero.");
 
-            return Ok(obj);
+            var totalItems = await _employeeRepository.CountAsync();
+            var items = await _employeeRepository.GetAll(page, pageSize);
+
+            var result = new
+            {
+                Data = items,
+                TotalItems = totalItems,
+                Page = page,
+                PageSize = pageSize,
+                TotalPages = (int)Math.Ceiling(totalItems / (double)pageSize)
+            };
+
+            return Ok(result);
         }
+
 
         [HttpGet("{id}")]
         public async Task<ActionResult> GetById(int id)
@@ -101,6 +113,17 @@ namespace Cistema.Controllers
             await _employeeRepository.Update(employee);
 
             return Ok(employee);
+        }
+        
+        [HttpDelete("{id}")]
+        public async Task<ActionResult> Delete(int id)
+        {
+            var obj = await _employeeRepository.GetEntityById(id);
+            if (obj == null)
+                return NotFound();
+            
+            await _employeeRepository.Delete(id);
+            return NoContent();
         }
     }
 }

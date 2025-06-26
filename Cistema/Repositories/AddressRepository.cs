@@ -1,5 +1,6 @@
 ﻿using Cistema.Database;
 using Cistema.Models;
+using Cistema.Models.DTO;
 using Cistema.Repositories.Interfaces;
 using Microsoft.EntityFrameworkCore;
 
@@ -14,16 +15,45 @@ public class AddressRepository : IAddressRepository
         _context = context;
     }
 
-    public async Task<List<Address>> GetAll()
+    public async Task<List<AddressInfoDTO>> GetAll()
     {
-        var addresses = await _context.Addresses.ToListAsync();
+        var addresses = await _context.Addresses
+            .Select(c => new AddressInfoDTO
+            {
+                CEP = c.CEP,
+                Street = c.Street,
+                Number = c.Number,
+                AddressLine2 = c.AddressLine2,
+                Neighborhood = c.Neighborhood,
+                City = c.City,
+                State = c.State,
+                EmployeeId = c.EmployeeId
+            })
+            .ToListAsync();
         return addresses;
     }
 
-    public async Task<Address> GetById(int id)
+    public async Task<AddressInfoDTO> GetById(int id)
     {
-        var address = await _context.Addresses.Include(a => a.Employee).FirstOrDefaultAsync(a => a.Id == id);
+        var address = await _context.Addresses
+            .Where(a=>a.Id == id).Select(c => new AddressInfoDTO()
+            {
+                CEP = c.CEP,
+                Street = c.Street,
+                Number = c.Number,
+                AddressLine2 = c.AddressLine2,
+                Neighborhood = c.Neighborhood,
+                City = c.City,
+                State = c.State,
+                EmployeeId = c.EmployeeId
+            })
+            .FirstOrDefaultAsync();
         return address;
+    }
+
+    public async Task<Address> GetEntityById(int id)
+    {
+        return await _context.Addresses.FindAsync(id);
     }
 
     public async Task<Address> Create(Address address)

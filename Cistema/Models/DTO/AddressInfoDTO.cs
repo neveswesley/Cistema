@@ -9,4 +9,6 @@ public class AddressInfoDTO
     public string Neighborhood { get; set; }
     public string City { get; set; }
     public string State { get; set; }
+    
+    public int EmployeeId { get; set; }
 }

@@ -24,4 +24,7 @@ public class EmployeeReadDTO
     public DateTime Register { get; set; }
     public string Creator { get; set; }
     public DateTime? LastUpdate { get; set; }
+    public AddressInfoDTO? Address { get; set; }
+    public TitleInfoDTO? Title { get; set; }
+    public ContactInfoDTO? Contact { get; set; }
 }

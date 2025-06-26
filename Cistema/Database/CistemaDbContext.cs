@@ -1,4 +1,5 @@
 ﻿using Cistema.Models;
+using Cistema.Models.DTO;
 using Microsoft.EntityFrameworkCore;
 
 namespace Cistema.Database;
@@ -18,6 +19,8 @@ public class CistemaDbContext : DbContext
     
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
+        base.OnModelCreating(modelBuilder);
+
         modelBuilder.Entity<Employee>()
             .HasOne(t => t.Title)
             .WithMany(e => e.Employees)
@@ -26,11 +29,17 @@ public class CistemaDbContext : DbContext
         modelBuilder.Entity<Employee>()
             .HasOne(a => a.Address)
             .WithOne(e => e.Employee)
-            .HasForeignKey<Address>(ae => ae.EmployeeId);
+            .HasForeignKey<Address>(ae => ae.EmployeeId)
+            .OnDelete(DeleteBehavior.Restrict);
 
         modelBuilder.Entity<Employee>()
             .HasOne(e => e.Contact)
             .WithOne(c => c.Employee)
-            .HasForeignKey<Contact>(ec => ec.EmployeeId);
+            .HasForeignKey<Contact>(c => c.EmployeeId)
+            .OnDelete(DeleteBehavior.Restrict);
+
+        modelBuilder.Entity<Employee>()
+            .Property(e => e.Salary)
+            .HasPrecision(18, 2);
     }
 }
