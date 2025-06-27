@@ -1,6 +1,7 @@
 using Cistema.Models;
 using Cistema.Models.DTO;
 using Cistema.Repositories.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -17,6 +18,7 @@ namespace Cistema.Controllers
             _employeeRepository = employeeRepository;
         }
 
+        [Authorize]
         [HttpGet]
         public async Task<ActionResult> GetAllPaged(int page, int pageSize)
         {
@@ -38,7 +40,7 @@ namespace Cistema.Controllers
             return Ok(result);
         }
 
-
+        [Authorize]
         [HttpGet("{id}")]
         public async Task<ActionResult> GetById(int id)
         {
@@ -49,6 +51,7 @@ namespace Cistema.Controllers
             return Ok(obj);
         }
 
+        [Authorize]
         [HttpPost("")]
         public async Task<ActionResult> Add([FromBody] EmployeeCreateDTO employeeDto)
         {
@@ -83,6 +86,7 @@ namespace Cistema.Controllers
             return Ok(obj);
         }
 
+        [Authorize]
         [HttpPut("{id}")]
         public async Task<ActionResult> Update(int id, [FromBody] EmployeeUpdateDTO employeeDto)
         {
@@ -115,6 +119,7 @@ namespace Cistema.Controllers
             return Ok(employee);
         }
         
+        [Authorize]
         [HttpDelete("{id}")]
         public async Task<ActionResult> Delete(int id)
         {

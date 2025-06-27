@@ -9,3 +9,10 @@ CRUD - TITLE - usar model para cadastrar, editar, excluir
 autenticação - login/senha
 
 paginação
+
+
+carla.mendes@email.com
+@Carla1109
+
+amanda.costa@email.com
+@Amanda0911

@@ -1,10 +1,12 @@
 ﻿using Cistema.Models;
 using Cistema.Models.DTO;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace Cistema.Database;
 
-public class CistemaDbContext : DbContext
+public class CistemaDbContext : IdentityDbContext<IdentityUser, IdentityRole, string>
 {
     public CistemaDbContext(DbContextOptions<CistemaDbContext> options) : base(options)
     {
@@ -15,6 +17,8 @@ public class CistemaDbContext : DbContext
     public DbSet<Title> Titles { get; set; }
     public DbSet<Address> Addresses { get; set; }
     public DbSet<Contact> Contacts { get; set; }
+    public DbSet<RefreshToken> RefreshTokens { get; set; }
+
 
     
     protected override void OnModelCreating(ModelBuilder modelBuilder)
